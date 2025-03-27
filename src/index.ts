@@ -48,14 +48,17 @@ async function getLib(libhash: string, testnet: boolean): Promise<Cell> {
   }
 }
 
-async function calcREGstateinit(owner: Address, master: Address, code: Cell): Promise<Cell> {
+async function calcREGstateinit(owner: Address, master: Address, code: Cell, status?:number, root?: bigint, salt?: bigint): Promise<Cell> {
   return  beginCell()
             .storeUint(0, 2)      // 0b00 - No split_depth; No special
             .storeMaybeRef(code)  // code
             .storeMaybeRef(beginCell()
-                            .storeCoins(0)    // balance
+                            .storeMaybeUint(status || 0,4)  // status
+                            .storeCoins(0)        // balance
                             .storeAddress(owner)
                             .storeAddress(master)
+                            .storeMaybeUint(root, 256)  // .get_mintless_airdrop_hashmap_root
+                            .storeMaybeUint(salt, 10)
                             .endCell()                 
                           )       // data
             .storeUint(0, 1)      // empty libs
