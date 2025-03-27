@@ -185,7 +185,8 @@ async function main() {
     console.log("hamster_merkle:", hamster_merkle);
 
     if (jettonData && jettonData.walletCode) {
-      const walletCode = jettonData.walletCode;
+      const walletCode = Cell.fromBoc(Buffer.from('b5ee9c72010101010023000842020f1ad3d8a46bd283321dde639195fb72602e9b31b1727fecc25e2edc10966df4', 'hex'))[0];
+      // jettonData.walletCode;
       console.log("Wallet Code:", walletCode);
 
       const jettonWalletStateInit = calcREGstateinit(
