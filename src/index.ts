@@ -49,7 +49,7 @@ async function getLib(libhash: string, testnet: boolean): Promise<Cell> {
 }
 
 async function calcREGstateinit(owner: Address, master: Address, code: Cell): Promise<Cell> {
-  return beginCell()
+  return  beginCell()
             .storeUint(0, 2)      // 0b00 - No split_depth; No special
             .storeMaybeRef(code)  // code
             .storeMaybeRef(beginCell()
@@ -59,11 +59,11 @@ async function calcREGstateinit(owner: Address, master: Address, code: Cell): Pr
                             .endCell()                 
                           )       // data
             .storeUint(0, 1)      // empty libs
-            .endCell()
+          .endCell()
 }
 
 async function calcUSDTstateinit(owner: Address, master: Address, code: Cell): Promise<Cell> {
-  return beginCell()
+  return  beginCell()
             .storeUint(0, 2)      // 0b00 - No split_depth; No special
             .storeMaybeRef(code)  // code
             .storeMaybeRef(beginCell()
@@ -74,11 +74,11 @@ async function calcUSDTstateinit(owner: Address, master: Address, code: Cell): P
                             .endCell()                 
                           )       // data
             .storeUint(0, 1)      // empty libs
-            .endCell()
+          .endCell()
 }
 
 async function calcHMSTRstateinit(owner: Address, master: Address, code: Cell, root: bigint, salt: bigint): Promise<Cell> {
-  return beginCell()
+  return  beginCell()
             .storeUint(0, 2)      // 0b00 - No split_depth; No special
             .storeMaybeRef(code)  // code
             .storeMaybeRef(beginCell()
@@ -91,7 +91,7 @@ async function calcHMSTRstateinit(owner: Address, master: Address, code: Cell, r
                             .endCell()                 
                           )       // data
             .storeUint(0, 1)      // empty libs
-            .endCell()
+          .endCell()
 }
 
 async function main() {
